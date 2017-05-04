@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\build\common.props" />
+  <PropertyGroup>
+    <Description>Entity Framework Core Application Insights integration.</Description>
+    <TargetFrameworks>net46;netstandard1.3</TargetFrameworks>
+    <AssemblyName>Microsoft.EntityFrameworkCore.ApplicationInsights</AssemblyName>
+    <RootNamespace>Microsoft.EntityFrameworkCore.ApplicationInsights</RootNamespace>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Relational\EFCore.Relational.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.Common" Version="$(CoreFxVersion)" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.4.0-*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+</Project>
