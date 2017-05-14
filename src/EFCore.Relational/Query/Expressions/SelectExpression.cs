@@ -517,16 +517,9 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions
         {
             Check.NotNull(expression, nameof(expression));
 
-            if (expression.NodeType == ExpressionType.Convert)
-            {
-                var unaryExpression = (UnaryExpression)expression;
-
-                if (unaryExpression.Type.UnwrapNullableType()
-                    == unaryExpression.Operand.Type)
-                {
-                    expression = unaryExpression.Operand;
-                }
-            }
+            expression = expression.RemoveConvert();
+            expression = (expression as NullableExpression)?.Operand.RemoveConvert()
+                ?? expression;
 
             var projectionIndex
                 = _projection.FindIndex(
